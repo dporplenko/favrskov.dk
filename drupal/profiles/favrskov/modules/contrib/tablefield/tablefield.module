@@ -604,7 +604,7 @@ function tablefield_field_widget_form(&$form, &$form_state, $field, $instance, $
     $help_text = $instance['description'];
   }
   else {
-    if ($field['settings']['hide_headers'] == TRUE) {
+    if (isset($field['settings']['hide_headers']) && $field['settings']['hide_headers'] == TRUE) {
       $help_text = t('This table will not have a header.');
     }
     else {

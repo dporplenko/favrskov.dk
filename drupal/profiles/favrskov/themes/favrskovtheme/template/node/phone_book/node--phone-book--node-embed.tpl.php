@@ -22,7 +22,7 @@ $content['field_phone_book_address'][0]['name_block']['last_name']['#url'] = $no
 $content['field_phone_book_address'][0]['name_block']['last_name']['#view_mode'] = $view_mode;
 $content['field_phone_book_address'][0]['name_block']['last_name']['#view_mode'] = $view_mode;
 ?>
-<?php print '<div id="contact-item-' . $phone_book_id . '" class="contact-item group">'; ?>
+<?php print '<div id="contact-item-' . (isset($phone_book_id) ?: '') . '" class="contact-item group">'; ?>
   <div class='contact-info'>
     <?php foreach ($fields as $field): ?>
 

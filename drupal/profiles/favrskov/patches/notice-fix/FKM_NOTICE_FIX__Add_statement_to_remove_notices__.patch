@@ -1,0 +1,37 @@
+diff --git a/drupal/profiles/favrskov/modules/contrib/encrypt/encrypt.install b/drupal/profiles/favrskov/modules/contrib/encrypt/encrypt.install
+index a45150b3..b4de80ee 100644
+--- a/drupal/profiles/favrskov/modules/contrib/encrypt/encrypt.install
++++ b/drupal/profiles/favrskov/modules/contrib/encrypt/encrypt.install
+@@ -142,6 +142,7 @@ function encrypt_uninstall() {
+ function encrypt_requirements($phase) {
+   $t = get_t();
+   $requirements = array();
++  $dependency_errors = '';
+
+   switch ($phase) {
+     case 'runtime':
+diff --git a/drupal/profiles/favrskov/modules/contrib/tablefield/tablefield.module b/drupal/profiles/favrskov/modules/contrib/tablefield/tablefield.module
+index f1ecbdfe..80cd46b5 100644
+--- a/drupal/profiles/favrskov/modules/contrib/tablefield/tablefield.module
++++ b/drupal/profiles/favrskov/modules/contrib/tablefield/tablefield.module
+@@ -604,7 +604,7 @@ function tablefield_field_widget_form(&$form, &$form_state, $field, $instance, $
+     $help_text = $instance['description'];
+   }
+   else {
+-    if ($field['settings']['hide_headers'] == TRUE) {
++    if (isset($field['settings']['hide_headers']) && $field['settings']['hide_headers'] == TRUE) {
+       $help_text = t('This table will not have a header.');
+     }
+     else {
+diff --git a/drupal/profiles/favrskov/themes/favrskovtheme/template/node/phone_book/node--phone-book--node-embed.tpl.php b/drupal/profiles/favrskov/themes/favrskovtheme/template/node/phone_book/node--phone-book--node-embed.tpl.php
+index f3c98ac5..a78364d6 100644
+--- a/drupal/profiles/favrskov/themes/favrskovtheme/template/node/phone_book/node--phone-book--node-embed.tpl.php
++++ b/drupal/profiles/favrskov/themes/favrskovtheme/template/node/phone_book/node--phone-book--node-embed.tpl.php
+@@ -22,7 +22,7 @@ $content['field_phone_book_address'][0]['name_block']['last_name']['#url'] = $no
+ $content['field_phone_book_address'][0]['name_block']['last_name']['#view_mode'] = $view_mode;
+ $content['field_phone_book_address'][0]['name_block']['last_name']['#view_mode'] = $view_mode;
+ ?>
+-<?php print '<div id="contact-item-' . $phone_book_id . '" class="contact-item group">'; ?>
++<?php print '<div id="contact-item-' . (isset($phone_book_id) ?: '') . '" class="contact-item group">'; ?>
+   <div class='contact-info'>
+     <?php foreach ($fields as $field): ?>
